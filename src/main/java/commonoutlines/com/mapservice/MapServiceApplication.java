@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories("commonoutlines.com.mapservice.*")
 @EntityScan("commonoutlines.com.mapservice.*")
-
 @SpringBootApplication
 public class MapServiceApplication {
 
