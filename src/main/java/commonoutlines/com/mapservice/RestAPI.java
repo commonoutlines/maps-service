@@ -11,6 +11,12 @@ import java.math.RoundingMode;
 @RequestMapping("/api")
 public class RestAPI {
 
+    private final EmployeeRepository repository;
+
+    public RestAPI(EmployeeRepository repository) {
+        this.repository = repository;
+    }
+
     @GetMapping("/hello")
     public String hello() {
         return "Hello, World!";
@@ -34,6 +40,27 @@ public class RestAPI {
 
             float[] geoFence = { 1.23f, 4.56f, 7.89f };
             return new CommunityIDAndGeoFenceResponse(1, bounds);
+
+
+        }
+
+        @GetMapping("/createTest")
+        public String createTest() {
+            Employee newUser = new Employee();
+            newUser.setLastName("unkown");
+            newUser.setFirstName("ok");
+            newUser.setId(123L);
+
+            // Save the user to the database
+            Employee savedUser = repository.save(newUser);
+            if ( savedUser.getId() != null) {
+                // The user was saved successfully
+                return "OK";
+            } else {
+                // Handle the case where the save operation failed
+                throw new RuntimeException("Failed to create user.");
+            }
+
         }
 
     public static BigDecimal[] calculateBounds(float longitude, float latitude) {
