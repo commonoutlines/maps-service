@@ -10,4 +10,11 @@ public class RestAPI {
     public String hello() {
         return "Hello, World!";
     }
+
+    @GetMapping("/hellojson")
+    public SimpleJSONResponse getSimpleResponse() {
+    SimpleJSONResponse response = new SimpleJSONResponse("Hello, Spring Boot!", "moredata");
+        return response;
+
+    }
 }
