@@ -20,8 +20,8 @@ public class MapServiceApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		String sql = "INSERT INTO students (name, email) VALUES ("
-				+ "'Nam Ha Minh', 'nam@codejava.net')";
+
+		String sql = "CREATE TABLE accounts (user_id serial PRIMARY KEY,username VARCHAR ( 50 ) UNIQUE NOT NULL)";
 
 		int rows = jdbcTemplate.update(sql);
 		if (rows > 0) {
