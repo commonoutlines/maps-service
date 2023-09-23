@@ -42,17 +42,25 @@ public class RestAPI {
         float lon = request.longitude;
         MapGeoFence bounds = MapServiceLogic.calculateBounds(lat, lon);
         String hash = MapServiceLogic.generateHash(bounds);
-
-        return new CommunityIDAndGeoFenceResponse(hash, bounds);
+        //GetCommunityID from Database based on HASH
+        int communityID = dbman.getCommunityIDWithHash(hash);
+        return new CommunityIDAndGeoFenceResponse(communityID, bounds);
 
     }
 
     @GetMapping("/getCommunityIDBasedOnLocationAndInsertIntoDB")
     public CommunityIDAndGeoFenceResponse getCommunityIDBasedOnLocationAndInsertIntoDB( @RequestBody CommunityIDAndGeoFenceRequest request) {
 
-        CommunityIDAndGeoFenceResponse response =  getCommunityIDBasedOnLocation(request);
-        dbman.insertCommunity(response.getID() , response.getGeoFence().latitudeMin, response.getGeoFence().latitudeMax, response.getGeoFence().longitudeMin, response.getGeoFence().longitudeMax);
-        return response;
+
+        // Handle the received JSON data
+        float lat = request.latitude;
+        float lon = request.longitude;
+        MapGeoFence bounds = MapServiceLogic.calculateBounds(lat, lon);
+        String hash = MapServiceLogic.generateHash(bounds);
+        dbman.insertCommunity( hash , bounds.latitudeMin, bounds.latitudeMax, bounds.longitudeMin, bounds.longitudeMax);
+        int communityID = dbman.getCommunityIDWithHash(hash);
+        return new CommunityIDAndGeoFenceResponse(communityID, bounds);
+
     }
 
     @GetMapping("/createTest")

@@ -1,32 +1,18 @@
 package commonoutlines.com.mapservice;
+import lombok.Getter;
+import lombok.Setter;
 
-
-import java.math.BigDecimal;
-
+@Getter
+@Setter
 public class CommunityIDAndGeoFenceResponse {
-        private String ID;
+        private int ID;
         private MapGeoFence GeoFence;
 
-        public CommunityIDAndGeoFenceResponse(String ID, MapGeoFence GeoFence) {
+        public CommunityIDAndGeoFenceResponse(int ID, MapGeoFence GeoFence) {
             this.ID = ID;
             this.GeoFence = GeoFence;
         }
 
-        public String getID() {
-            return ID;
-        }
-
-        public void setID(String message) {
-            this.ID = ID;
-        }
-
-        public MapGeoFence getGeoFence() {
-        return GeoFence;
-        }
-
-        public void setGeoFence(MapGeoFence GeoFence) {
-        this.GeoFence = GeoFence;
-        }
 
 
 }
