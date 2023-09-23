@@ -4,15 +4,15 @@ package commonoutlines.com.mapservice;
 import java.math.BigDecimal;
 
 public class CommunityIDAndGeoFenceResponse {
-        private int ID;
-        private BigDecimal[] GeoFence;
+        private String ID;
+        private MapGeoFence GeoFence;
 
-        public CommunityIDAndGeoFenceResponse(int ID, BigDecimal[] GeoFence) {
+        public CommunityIDAndGeoFenceResponse(String ID, MapGeoFence GeoFence) {
             this.ID = ID;
             this.GeoFence = GeoFence;
         }
 
-        public int getID() {
+        public String getID() {
             return ID;
         }
 
@@ -20,11 +20,11 @@ public class CommunityIDAndGeoFenceResponse {
             this.ID = ID;
         }
 
-        public BigDecimal[] getGeoFence() {
+        public MapGeoFence getGeoFence() {
         return GeoFence;
         }
 
-        public void setGeoFence(BigDecimal[] GeoFence) {
+        public void setGeoFence(MapGeoFence GeoFence) {
         this.GeoFence = GeoFence;
         }
 
